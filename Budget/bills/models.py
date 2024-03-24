@@ -25,3 +25,6 @@ class Bill(models.Model):
     due_date = models.PositiveIntegerField()
     type = models.CharField(max_length=7, choices=Catergory.choices)
     frequency = models.CharField(max_length=3, choices=BillFrequency.choices)
+
+    def __str__(self):
+        return self.bill_name
