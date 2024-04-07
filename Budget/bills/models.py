@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Bill(models.Model):
@@ -15,11 +16,12 @@ class Bill(models.Model):
 
     class BillFrequency(models.TextChoices):
         MONTHLY = 'MON', 'Monthly'
-        BIWEEKLY = 'BW', 'biweekly'
+        BIWEEKLY = 'BW', 'Bi-weekly'
         SEMIMONTHLY = 'SM', 'Semimonthly'
         WEEKLY = 'W', 'Weekly'
         ANNUAL = 'AN', 'Annually'
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     bill_name = models.CharField(max_length=64)
     amount = models.DecimalField(max_digits=6, decimal_places=2)
     due_date = models.PositiveIntegerField()

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title%}
+    Bills
+{% endblock%}
+
+{% block content%}
+    <h1>Bills</h1>
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Due Date</th>
+            <th>Category</th>
+            <th>Payment Type</th>
+        </tr>
+        {% for bill in bills%}
+            <tr>
+                {% if form.instance.id == bill.id %}
+                    {% include "bills/save.html" %}
+                {% else %}
+                    <td>{{ bill.bill_name }}</td>
+                    <td>${{ bill.amount }}</td>
+                    <td>{{ bill.due_date }}</td>
+                    <td>{{ bill.get_type_display }}</td>
+                    <td>{{ bill.get_frequency_display }}</td>
+                    <td>
+                        <button name="edit" value="{{ bill.id }}" formnovalidate>Edit</button>
+                        <button name="delete" value="{{ bill.id }}" formnovalidate>Delete</button>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        {% if not form.instance.id %}
+        <tr>
+            {% include "bills/save.html" %}
+        </tr>
+        {% endif %}
+        </table>  
+    </form>  
+{% endblock%}
