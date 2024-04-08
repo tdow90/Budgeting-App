@@ -5,7 +5,7 @@ from .forms import BillForm
 
 #Create your views here.
 def index(request):
-    all_bills = Bill.objects.all()
+    bills = Bill.objects.filter(user=request.user)
     if request.method == "POST":
         form = BillForm()
         if 'save' in request.POST:
@@ -33,7 +33,7 @@ def index(request):
     else:
         form = BillForm()
     return render(request, 'bills/bills.html', {
-        "bills": all_bills, 
+        "bills": bills, 
         "form": form
     })
     

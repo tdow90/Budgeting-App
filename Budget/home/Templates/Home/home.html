@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title%}
+    Home
+{% endblock%}
+
+{% block content%}
+   {% for income in income%}
+    Current pay amount ${{income.pay_amount}}
+   {% endfor%}
+{% endblock%}
