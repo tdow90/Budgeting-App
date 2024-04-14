@@ -5,7 +5,23 @@
 {% endblock%}
 
 {% block content%}
+<div>
    {% for income in income%}
     Current pay amount ${{income.pay_amount}}
    {% endfor%}
+</div>
+
+<div>
+    {% for bill in bills %}
+        <li>
+            <ul>{{bill.bill_name}} ${{bill.amount}} due {{bill.due_date}}</ul>
+        </li>
+    {% endfor%}
+</div>
+<div>
+    Total Bills amount: ${{bill_amount}}
+</div>
+<div>
+    Money left: ${{money_left}}
+</div>
 {% endblock%}

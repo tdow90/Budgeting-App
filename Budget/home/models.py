@@ -23,7 +23,7 @@ class Income(models.Model):
     )
     pay_amount = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     type = models.CharField(max_length=3, choices=Type.choices)
-    frequncy = models.CharField(max_length=3, choices=PayFrequency.choices)
+    frequency = models.CharField(max_length=3, choices=PayFrequency.choices)
     #Need day of the month, to calculate weekly, bi-weekly and monthly pay days
     pay_date_one = models.IntegerField(
         validators=[MaxValueValidator(31), MinValueValidator(1)]

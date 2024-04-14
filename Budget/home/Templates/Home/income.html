@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %} Income {% endblock  %}
+
+{% block content %}
+    <h1>Income</h1>
+
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{form}}
+            <button>Save</button>
+        </form>
+    </div>
+
+
+{% endblock content %}
